@@ -11,5 +11,7 @@ High-Frequency Data Acquisition: Utilized an INA219 circuit to sample current, v
 Statistical Analysis: Verified results through mean-standard deviation hysteresis curves over 400ms oscillation periods.
 
 Repository Contents
-1. Main Research Paper Uploaded
+1. Final Research Paper Uploaded
+2. Arduino Code and Measurement Graphs embedded in the paper
+3. Contributors and Mentors mentioned in the Acknowlegment section of the paper.
    
