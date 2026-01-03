@@ -11,17 +11,23 @@ This research addresses the energy inefficiencies in classical Galileo clock mec
 
 Engineering Highlights
 
-•	Energy Savings: Achieved a verified 44.2% reduction in energy consumption.
-•	Power Gating Logic: Implemented IR sensors and Arduino-based control to drop current draw to zero during the pendulum’s non-contact phase.
-•	Precision Machining: Designed and 3D-printed a custom motor housing using SolidWorks to integrate the electronic drive with the mechanical gear train.
-•	High-Frequency Data Logging: Replaced standard multimeters with an INA219 circuit to achieve 7.5ms sampling granularity (40-60 samples per cycle) for statistical analysis.
+Energy Savings: Achieved a verified 44.2% reduction in energy consumption.
+
+Power Gating Logic: Implemented IR sensors and Arduino-based control to drop current draw to zero during the pendulum’s non-contact phase.
+
+Precision Machining: Designed and 3D-printed a custom motor housing using SolidWorks to integrate the electronic drive with the mechanical gear train.
+
+High-Frequency Data Logging: Replaced standard multimeters with an INA219 circuit to achieve 7.5ms sampling granularity (40-60 samples per cycle) for statistical analysis.
 
 Mathematical Framework
 
 My optimization strategy is grounded in the relationship between power, current, and time:
-•	Power ($P$): Defined as $P = V \times I$13. Since $V = I \times R$, power is proportional to the square of the current ($P \propto I^2 \times R$).
-•	Energy ($E$): Calculated as the integral of power over time ($E = \int P \, dt$).
-•	The Result: By dropping the current ($I$) to zero for 42.2% of the oscillation period, the energy consumption follows a linear downward trend compared to continuous-run systems.
+
+Power ($P$): Defined as $P = V \times I$13. Since $V = I \times R$, power is proportional to the square of the current ($P \propto I^2 \times R$).
+
+Energy ($E$): Calculated as the integral of power over time ($E = \int P \, dt$).
+
+The Result: By dropping the current ($I$) to zero for 42.2% of the oscillation period, the energy consumption follows a linear downward trend compared to continuous-run systems.
 
 Portability & Scalability
 
