@@ -37,7 +37,7 @@ This method is portable and applies to various high-torque mechanical systems17:
 
 Repository Contents
 
-1. Final Research Paper Uploaded
+1. Final Research Paper Uploaded under Product Documents
 2. Arduino Code and Measurement Graphs embedded in the paper
 3. Contributors and Mentors mentioned in the Acknowlegment section of the paper.
    
