@@ -1,0 +1,82 @@
+#include <Wire.h>
+#include <Adafruit_INA219.h>
+
+Adafruit_INA219 ina219;
+
+// -------------------- CONSTANTS --------------------
+const int PIN_TO_SENSOR = 2;
+const int MOTOR_DIR_PIN = 12;
+const int MOTOR_BRAKE_PIN = 9;
+const int MOTOR_PWM_PIN = 3;
+const int ANALOG_PIN = A3;
+
+const uint32_t SAMPLE_PERIOD_US = 5000; // 0.005 s = 200 Hz
+
+// -------------------- TIMING --------------------
+uint32_t nextSampleUs;
+
+// -------------------- SETUP --------------------
+void setup() {
+  pinMode(PIN_TO_SENSOR, INPUT);
+  pinMode(MOTOR_DIR_PIN, OUTPUT);
+  pinMode(MOTOR_BRAKE_PIN, OUTPUT);
+  pinMode(MOTOR_PWM_PIN, OUTPUT);
+
+  Serial.begin(500000);
+  Wire.begin();
+
+  if (!ina219.begin()) {
+    Serial.println("ERROR: INA219 not found");
+    while (1);
+  }
+
+  // Optional: better resolution if you are below ~400 mA
+  // ina219.setCalibration_16V_400mA();
+
+  // CSV header
+  Serial.println("t_s,sensor_digital,analog_val,bus_V,shunt_mV,current_mA,power_mW");
+
+  nextSampleUs = micros();
+}
+
+// -------------------- LOOP --------------------
+void loop() {
+  uint32_t nowUs = micros();
+
+  // precise 100 Hz scheduler
+  if ((int32_t)(nowUs - nextSampleUs) >= 0) {
+    nextSampleUs += SAMPLE_PERIOD_US;
+
+    // ---------- TIMESTAMP ----------
+    float time_s = nowUs / 1e6;  // seconds since boot
+
+    // ---------- SENSOR READS ----------
+    int sensorState = digitalRead(PIN_TO_SENSOR);
+    int analogVal = analogRead(ANALOG_PIN);
+
+    float busV     = ina219.getBusVoltage_V();
+    float shuntmV  = ina219.getShuntVoltage_mV();
+    float currentmA= ina219.getCurrent_mA();
+    float power_mW = ina219.getPower_mW();
+
+    // ---------- MOTOR LOGIC ----------
+    digitalWrite(MOTOR_DIR_PIN, HIGH);
+    digitalWrite(MOTOR_BRAKE_PIN, LOW);
+
+    if (sensorState == HIGH) {
+      analogWrite(MOTOR_PWM_PIN, 0);
+    } else {
+      analogWrite(MOTOR_PWM_PIN, 0);
+    }
+
+    // ---------- CSV OUTPUT ----------
+    Serial.print(time_s, 4); Serial.print(",");
+    Serial.print(sensorState); Serial.print(",");
+    Serial.print(analogVal); Serial.print(",");
+    Serial.print(busV, 6); Serial.print(",");
+    Serial.print(shuntmV, 6); Serial.print(",");
+    Serial.print(currentmA, 6); Serial.print(",");
+    Serial.println(power_mW, 6);
+  }
+}
+
