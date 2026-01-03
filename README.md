@@ -1,6 +1,8 @@
 # Galileo-Escapement-Optimization
 Novel Sensor-Based Energy Optimization for Electro-Mechanical Devices
+
 Researcher: Sanaya Telang 
+
 Technical Mentors: PhD Noah Graff, James Geraci, and Professor Michael Littman (Princeton University) 
 
 Project Overview
