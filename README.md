@@ -1,5 +1,5 @@
 # Galileo-Escapement-Optimization
-Novel Sensor-Based Energy Optimization for Electro-Mechanical Devices
+A Novel Sensor-Based Energy Optimization for Electro-Mechanical Devices
 
 (Final Paper in the Project Documents Section)
 
